@@ -2,12 +2,19 @@ const { default: mongoose } = require("mongoose")
 const mogoose = require("mongoose")
 
 const cartSchema = mogoose.Schema({
-    drugs: [{
+    products: [{
         ref: "Drug",
         type: mongoose.SchemaTypes.ObjectId
     }],
-    summa: {
+    amount: {
         type: Number,
         default: 0
+    },
+    user: {
+        ref: "User",
+        type: mongoose.SchemaTypes.ObjectId
     }
 })
+
+const Cart = mongoose.model("Cart", cartSchema)
+module.exports = Cart
