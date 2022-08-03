@@ -16,9 +16,13 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "user",
   },
-  sum: {
+  total: {
     type: Number,
     default: 0,
+  },
+  isRecepte: {
+    type: Boolean,
+    default: false
   },
 });
 
