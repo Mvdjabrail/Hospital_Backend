@@ -3,9 +3,8 @@ const Drug = require("../models/Drug")
 module.exports.drugController = {
     postDrug: async (req, res) => {
         try {
-            const { text, price, title, recept } = req.body
+            const { price, title, recept, category } = req.body
             const drug = await Drug.create({
-                text,
                 title,
                 recept,
                 category,
