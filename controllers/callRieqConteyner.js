@@ -14,7 +14,7 @@ module.exports.callRieqController = {
         email,
         message,
       });
-      const data = await res.json(сallmessage);
+      const data = await res.json("Сообшение отправленно");
     } catch (error) {
       res.json(error.message);
     }
