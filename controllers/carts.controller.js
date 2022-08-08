@@ -10,21 +10,23 @@ module.exports.cartController = {
             const user = await User.findById(req.user.id)
             if (drug.recept) {
                 if (user.isRecepte) {
-                    await Cart.findByIdAndUpdate(req.params.id, {
+                    const newCart = await Cart.findByIdAndUpdate(req.params.id, {
                         $push: { products: req.body.products },
                         $set: { amount: cart.amount + drug.price },
-                    })
-                    res.json('Лекарство добавлено в корзину')
+                    }, { new: true })
+                    console.log("NEWCART", newCart)
+                    return res.json(newCart)
                 } else {
-                    res.json('У вас нет рецепта на это лекарство')
+                    return res.json('У вас нет рецепта на это лекарство')
                 }
-            } else {
-                await Cart.findByIdAndUpdate(req.params.id, {
-                    $push: { products: req.body.products },
-                    $set: { amount: cart.amount + drug.price },
-                })
-                res.json('Лекарство добавлено в корзину')
             }
+            const cartUpdate = await Cart.findByIdAndUpdate(req.params.id, {
+                $push: { products: req.body.products },
+                $set: { amount: cart.amount + drug.price },
+            }, { new: true })
+            console.log("CART", cartUpdate)
+            res.json(cartUpdate)
+
         } catch (error) {
             res.json(error.message)
         }
