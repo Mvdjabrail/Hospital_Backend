@@ -3,9 +3,9 @@ const { appointmentController } = require("../controllers/appointments.controlle
 
 const route = Router();
 
-route.get("/appointments", appointmentController.getAppoinment);
-route.post("/appointments", appointmentController.postAppoinment);
-route.get("/appointments/:id", appointmentController.patchAppoinment);
-route.delete("/appointments/:id", appointmentController.deleteAppoinment);
+route.get("/appointments/fetch", appointmentController.getAppointment);
+route.post("/appointments/add", appointmentController.postAppointment);
+route.patch("/appointments/update/:id", appointmentController.patchAppointment);
+route.delete("/appointments/delete/:id", appointmentController.deleteAppointment);
 
-module.exports = router;
+module.exports = route;

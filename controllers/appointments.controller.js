@@ -1,10 +1,10 @@
 const Appointment = require("../models/Appointment")
 
 module.exports.appointmentController = {
-    getAppoinment: async (req, res) =>{
+    getAppointment: async (req, res) =>{
         try {
-           const appoinment = await Appointment.find() 
-           res.json(appoinment);
+           const appointment = await Appointment.find() 
+           res.json(appointment);
 
         } catch (error) {
             res.status(401).json({
@@ -13,18 +13,16 @@ module.exports.appointmentController = {
         }
     },
 
-    postAppoinment: async (req, res) => {
-        const { user } = req.body.user;
-        const { service } = req.body.service;
-        const { dateAndTime } = req.body.user;
+    postAppointment: async (req, res) => {
+        const { user } = req.body;
+        const { service } = req.body;
 
         try {
-            const appoinment = await Appointment.create({
+            const appointment = await Appointment.create({
                 user,
-                service,
-                dateAndTime,
+                service
             })
-            res.json(appoinment)
+            res.json(appointment)
 
         } catch (error) {
             res.status(401).json({
@@ -33,15 +31,15 @@ module.exports.appointmentController = {
         }
     },
 
-    patchAppoinment: async (req, res) => {
+    patchAppointment: async (req, res) => {
         const { id } = req.params;
         const { dateAndTime } = req.body.dateAndTime;
 
         try {
-            const appoinment = await Appointment.findByIdAndRemove({ service: id, 
+            const appointment = await Appointment.findByIdAndRemove({ service: id, 
                 dateAndTime
             })
-            res.json(appoinment)
+            res.json(appointment)
 
         } catch (error) {
             res.status(401).json({
@@ -50,11 +48,11 @@ module.exports.appointmentController = {
         }
     },
 
-    deleteAppoinment: async (req, res) => {
+    deleteAppointment: async (req, res) => {
         const { id } = req.params;
 
         try {
-            const appoinment = await Appointment.findByIdAndDelete(id)
+            const appointment = await Appointment.findByIdAndDelete(id)
             
             res.json("запись удалена")
 

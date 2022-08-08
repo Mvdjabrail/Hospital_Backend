@@ -10,5 +10,6 @@ router.use(require("./reviews.route"));
 router.use(require("./services.route"));
 router.use(require("./users.route"));
 router.use(require("./callRieq.route"));
+router.use(require("./appointments.route"));
 
 module.exports = router;

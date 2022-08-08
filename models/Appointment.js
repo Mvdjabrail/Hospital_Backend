@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
-const AppointmentsSchema = mongoose.Schema({
+const appointmentsSchema = mongoose.Schema({
+  doctorId: {
+    ref: "user",
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true,
+  },
   user: {
     ref: "user",
     type: mongoose.SchemaTypes.ObjectId,
@@ -14,10 +19,9 @@ const AppointmentsSchema = mongoose.Schema({
   dateAndTime: { 
     type: Date,
     default: "",
-    required: true,
   },
 });
 
-const Appointments = mongoose.model("Appointments", AppointmentsSchema);
+const Appointments = mongoose.model("Appointments", appointmentsSchema);
 
 module.exports = Appointments;
