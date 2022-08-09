@@ -10,6 +10,7 @@ router.patch('/cart/:id', authMiddleware, cartController.clearnCart)
 router.patch('/user/:userId/cart/:id', cartController.buyDrugs)
 router.patch('/cash/:id', authMiddleware, cartController.topUpCash)
 router.patch('/plus/cart/:id', cartController.plusCartItem)
+router.patch('/minus/cart/:id', cartController.minusCartItem)
 router.get('/cart', cartController.getCart)
 
 
