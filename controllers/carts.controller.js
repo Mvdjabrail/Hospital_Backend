@@ -90,12 +90,12 @@ module.exports.cartController = {
                 // $set: { amount: cart.amount + drug.price },
                 // $set: { products: req.body.products, amount:req.body.amount +=1 }
             })
-            console.log(products)
-            const data = await response.json()
-            console.log(data)
-            res.json(data);
+            // console.log(products)
+            // const data = await response.json()
+            // console.log(data)
+            return res.json(response);
         } catch (error) {
-            res.json(error);
+            res.json(error.message);
         }
     },
 
