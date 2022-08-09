@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const drugSchema = mongoose.Schema({
+    g,
     title: String,
     recept: {
         type: Boolean,
