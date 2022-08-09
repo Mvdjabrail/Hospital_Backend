@@ -3,12 +3,18 @@ const Drug = require("../models/Drug")
 module.exports.drugController = {
     postDrug: async (req, res) => {
         try {
+<<<<<<< HEAD
             const { price, title, recept, category } = req.body
+=======
+            const { text, title, recept, price, category } = req.body
+>>>>>>> main
             const drug = await Drug.create({
                 title,
-                recept,
+                text,
+                price,
                 category,
-                price
+                image: req.file.path,
+                recept,
             })
             res.json(drug)
         } catch (error) {

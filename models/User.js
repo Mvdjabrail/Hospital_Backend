@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
+  service: {
+    ref: "service",
+    type: mongoose.SchemaTypes.ObjectId,
+  },
   email: {
     type: String,
     unique: true,

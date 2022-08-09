@@ -10,7 +10,8 @@ const drugSchema = mongoose.Schema({
     category: {
         ref: "Category",
         type: mongoose.SchemaTypes.ObjectId,
-    }
+    },
+    image: String
 })
 
 const Drug = mongoose.model("Drug", drugSchema)
