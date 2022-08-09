@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   service: {
     ref: "service",
+    default:null,
     type: mongoose.SchemaTypes.ObjectId,
   },
   email: {

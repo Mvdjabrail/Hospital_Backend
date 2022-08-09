@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(require('./routes/index'));
-app.use('/image', express.static(path.resolve(__dirname + 'image')));
+app.use('/image', express.static(path.resolve(__dirname, 'image')));
 
 
 mongoose.connect(process.env.MONGO_SERVER, {
