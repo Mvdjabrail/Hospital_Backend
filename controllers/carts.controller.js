@@ -98,6 +98,17 @@ module.exports.cartController = {
             res.json(error.message);
         }
     },
+    deleteProductById: async (req, res) => {
+        try {
+            const cart = await Cart.findById(req.params.id);
+            cart.products = cart.products.filter((item) => item.productId.toString() !== req.body.idProduct
+            )
+            await cart.save()
+            return res.json(cart)
+        } catch (error) {
+            res.json(error.message)
+        }
+    },
 
     minusCartItem: async (req, res) => {
         try {
