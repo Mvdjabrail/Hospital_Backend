@@ -17,12 +17,14 @@ module.exports.appointmentController = {
         const { doctorId } = req.body;
         const { user } = req.body;
         const { service } = req.body;
+        const { roomId } = req.body;
 
         try {
             const appointment = await Appointment.create({
                 doctorId,
                 user,
                 service,
+                roomId,
             })
             res.json(appointment)
 
