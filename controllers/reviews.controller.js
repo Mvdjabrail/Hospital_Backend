@@ -4,11 +4,12 @@ module.exports.reviewController = {
   postReview: async (req, res) => {
     try {
       const data = await Review.create({
-        doctorId: req.body.doctorId,
+        servicesId: req.body.servicesId,
         user: req.user.id,
         rating: req.body.rating,
         text: req.body.text,
       });
+      // console.log(data)
       res.json(data);
     } catch (error) {
       return res.status(401).json(`Ошибка: ${error.message}`);
@@ -43,7 +44,7 @@ module.exports.reviewController = {
   },
   getReview: async (req, res) => {
     try {
-      const data = await Review.find({ doctorId: req.params.id });
+      const data = await Review.find({ servicesId: req.params.id });
       return res.json(data);
     } catch (error) {
       res.json({ error: error.message });
