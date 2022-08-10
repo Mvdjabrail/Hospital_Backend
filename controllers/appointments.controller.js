@@ -3,7 +3,7 @@ const Appointment = require("../models/Appointment")
 module.exports.appointmentController = {
     getAppointment: async (req, res) =>{
         try {
-           const appointment = await Appointment.find() 
+           const appointment = await Appointment.find().populate("doctorId").populate("service");
            res.json(appointment);
 
         } catch (error) {
