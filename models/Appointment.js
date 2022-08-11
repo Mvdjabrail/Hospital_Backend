@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 
 const appointmentsSchema = mongoose.Schema({
   doctorId: {
-    ref: "user",
+    ref: "User",
     type: mongoose.SchemaTypes.ObjectId,
     required: true,
   },
   user: {
-    ref: "user",
+    ref: "User",
     type: mongoose.SchemaTypes.ObjectId,
     required: true,
   },
   service: {
-    ref: "service",
+    ref: "Service",
     type: mongoose.SchemaTypes.ObjectId,
     required: true,
   },
@@ -20,6 +20,10 @@ const appointmentsSchema = mongoose.Schema({
     type: Date,
     default: "",
   },
+  roomId: {
+    type: String,
+    required: true,
+  }
 });
 
 const Appointments = mongoose.model("Appointments", appointmentsSchema);

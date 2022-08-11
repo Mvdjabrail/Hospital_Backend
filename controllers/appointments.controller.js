@@ -3,7 +3,7 @@ const Appointment = require("../models/Appointment")
 module.exports.appointmentController = {
     getAppointment: async (req, res) =>{
         try {
-           const appointment = await Appointment.find() 
+           const appointment = await Appointment.find().populate("doctorId").populate("service").populate("user");
            res.json(appointment);
 
         } catch (error) {
@@ -17,12 +17,15 @@ module.exports.appointmentController = {
         const { doctorId } = req.body;
         const { user } = req.body;
         const { service } = req.body;
+        const { roomId } = req.body;
 
         try {
             const appointment = await Appointment.create({
                 doctorId,
                 user,
                 service,
+                roomId,
+
             })
             res.json(appointment)
 
