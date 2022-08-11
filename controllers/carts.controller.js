@@ -85,17 +85,44 @@ module.exports.cartController = {
 
     plusCartItem: async (req, res) => {
         try {
-            const response = await Cart.findByIdAndUpdate(req.params.id, {
-                products: req.body.products
-                // $set: { amount: cart.amount + drug.price },
-                // $set: { products: req.body.products, amount:req.body.amount +=1 }
-            })
-            console.log(products)
-            const data = await response.json()
-            console.log(data)
-            res.json(data);
+            const cart = await Cart.findById(req.params.id);
+            cart.products = cart.products.map((item) => {
+                if (item.productId.toString() === req.body.id) {
+                    item.amount += 1;
+                }
+                return item;
+            });
+            await cart.save()
+            return res.json(cart);
         } catch (error) {
-            res.json(error);
+            res.json(error.message);
+        }
+    },
+    deleteProductById: async (req, res) => {
+        try {
+            const cart = await Cart.findById(req.params.id);
+            cart.products = cart.products.filter((item) => item.productId.toString() !== req.body.idProduct
+            )
+            await cart.save()
+            return res.json(cart)
+        } catch (error) {
+            res.json(error.message)
+        }
+    },
+
+    minusCartItem: async (req, res) => {
+        try {
+            const cart = await Cart.findById(req.params.id);
+            cart.products = cart.products.map((item) => {
+                if (item.productId.toString() === req.body.id) {
+                    item.amount -= 1;
+                }
+                return item;
+            });
+            await cart.save()
+            return res.json(cart);
+        } catch (error) {
+            res.json(error.message);
         }
     },
 

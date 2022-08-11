@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema({
-  doctorId: {
-    ref: "User",
+  servicesId: {
+    ref: "Service",
     type: mongoose.SchemaTypes.ObjectId,
   },
   user: {

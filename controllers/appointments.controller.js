@@ -25,6 +25,7 @@ module.exports.appointmentController = {
                 user,
                 service,
                 roomId,
+
             })
             res.json(appointment)
 
