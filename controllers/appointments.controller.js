@@ -3,7 +3,7 @@ const Appointment = require("../models/Appointment")
 module.exports.appointmentController = {
     getAppointment: async (req, res) =>{
         try {
-           const appointment = await Appointment.find().populate("doctorId").populate("service").populate("user");
+           const appointment = await Appointment.find().populate("service")
            res.json(appointment);
 
         } catch (error) {
@@ -38,12 +38,12 @@ module.exports.appointmentController = {
 
     patchAppointment: async (req, res) => {
         const { id } = req.params;
-        const { dateAndTime } = req.body.dateAndTime;
+        const { dateAndTime } = req.body;
 
         try {
-            const appointment = await Appointment.findByIdAndRemove({ service: id, 
+            const appointment = await Appointment.findByIdAndUpdate(id, {
                 dateAndTime
-            })
+            }, {new: true})
             res.json(appointment)
 
         } catch (error) {
