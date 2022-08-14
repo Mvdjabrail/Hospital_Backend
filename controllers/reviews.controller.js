@@ -9,7 +9,6 @@ module.exports.reviewController = {
         rating: req.body.rating,
         text: req.body.text,
       });
-      // console.log(data)
       res.json(data);
     } catch (error) {
       return res.status(401).json(`Ошибка: ${error.message}`);
