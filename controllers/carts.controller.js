@@ -14,7 +14,6 @@ module.exports.cartController = {
                         $push: { products: req.body.products },
                         // $set: { amount: cart.amount + drug.price },
                     }, { new: true })
-                    console.log("NEWCART", newCart)
                     return res.json(newCart)
                 } else {
                     return res.json('У вас нет рецепта на это лекарство')
@@ -24,7 +23,6 @@ module.exports.cartController = {
                 $push: { products: req.body.products },
                 // $set: { amount: cart.amount + drug.price },
             }, { new: true })
-            console.log("CART", cartUpdate)
             res.json(cartUpdate)
 
         } catch (error) {
@@ -49,7 +47,6 @@ module.exports.cartController = {
             if (cart.amount > user.total) {
                 return res.json('У вас не достаточно средств')
             }
-            console.log(cart.amount);
 
             await User.findByIdAndUpdate(req.params.userId, {
                 total: user.total - cart.amount
